@@ -4,16 +4,16 @@ const clearButton = document.querySelector("#clear-button");
 let gridSize;
 
 clearButton.addEventListener('click', function(event) {
-    ereaseBoard();
+    eraseBoard();
 });
 sizeButton.addEventListener('click', function(event) {
     let userInput = prompt('Enter size of a grid. Maximum is 100');
     gridSize = parseInt(userInput);
     if(!isNaN(gridSize) && Number.isInteger(gridSize)){
-        if(gridSize <= 100){
+        if(gridSize <= 100 && gridSize > 0){
             drawBoard(gridSize);
         }else{
-            alert("Enter value equal or lesser than 100.")
+            alert("Enter value larger than 0 and equal or lesser than 100.")
         }
     }
     else{
@@ -51,7 +51,7 @@ function clearBoard(){
     }
 }
 
-function ereaseBoard(){
+function eraseBoard(){
     let boardChildren = board.children;
     Array.from(boardChildren).forEach(child => {
         child.style.backgroundColor = 'white';
