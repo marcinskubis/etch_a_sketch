@@ -13,16 +13,18 @@ body{
     justify-content: space-between;
     box-sizing: border-box;
     padding: 5px 15px 5px 15px;
-    height: 30px;
+    height: 40px;
     background-color: darkgrey;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 .control-panel > button{
     flex-shrink: 1;
-    font-size: 10px;
+    font-size: 18px;
     border-radius: 5px;
     border-color: black;
+    padding-left: 35px;
+    padding-right: 35px;
 }
 #clear-button{
     background-color: lightcoral;
@@ -34,8 +36,8 @@ body{
     align-self: center;
     align-items: flex-start;
     align-content: flex-start;
-    width: 350px;
-    height: 350px;
+    width: 700px;
+    height: 700px;
     flex: none;
     border: 15px solid black;
     border-radius: 10px;
