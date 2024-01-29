@@ -1,7 +1,22 @@
 const board = document.querySelector(".board");
 const sizeButton = document.querySelector("#size-button");
 const clearButton = document.querySelector("#clear-button");
+const eraserButton = document.querySelector("#eraser-button");
+const colorPicker = document.querySelector("#color-picker");
+
+let brushColor = 'black';
 let gridSize;
+let gridOn = false;
+let eraserToggled = false;
+let originalBrushColor = 'black';
+eraserButton.addEventListener('click', function(event){
+    if(gridOn){
+        if(!eraserToggled) originalBrushColor = brushColor;
+        eraserToggled = !eraserToggled;
+        brushColor = eraserToggled ? 'white' : originalBrushColor;
+        this.style.borderColor = eraserToggled ? 'red' : 'black';
+    }
+});
 
 clearButton.addEventListener('click', function(event) {
     eraseBoard();
@@ -21,6 +36,9 @@ sizeButton.addEventListener('click', function(event) {
     }
 });
 
+colorPicker.addEventListener('input', function(event){
+    brushColor = colorPicker.value;
+});
 
 function drawBoard(size){
     clearBoard();
@@ -29,21 +47,22 @@ function drawBoard(size){
         let div = document.createElement('div');
         div.addEventListener('mouseenter', function(event) {
             if(event.buttons === 1){
-                this.style.backgroundColor = 'black';
+                this.style.backgroundColor = brushColor;
             }
         });
         div.addEventListener('click', function(event) {
-            this.style.backgroundColor = 'black';
+            this.style.backgroundColor = brushColor;
             
         })
         div.addEventListener('mousedown', function(event) {
             event.preventDefault();
-            this.style.backgroundColor = 'black';
+            this.style.backgroundColor = brushColor;
             
         })
         div.style.width = `calc(${ratio}%)`;
         board.appendChild(div);
     }
+    gridOn = true;
 }
 function clearBoard(){
     while(board.firstChild){
